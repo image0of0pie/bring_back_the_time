@@ -40,21 +40,15 @@ ll min(ll a,ll b)
 }
 #define maxi(a,b,c) max(a,max(b,c))
 #define mini(a,b,c) min(a,min(b,c))
-ll powered(ll x,ll y)  
+ll powered(ll x,ll y,ll modd=md)  
 {  
-    ll temp;  
-    if(y == 0)  
-        return 1;  
-    temp = powered(x, y / 2);  
-    if (y % 2 == 0)  
-        return temp * temp;  
-    else
-    {  
-        if(y > 0)  
-            return x * temp * temp;  
-        else
-            return (temp * temp) / x;  
-    }  
+    ll res=1;
+    while(y){
+        if(x&1) res=(res*x)%modd;
+        x=(x*x)%modd;
+        y>>=1;
+    }
+    return res;
 }
 int kmp(string pat,string txt){
     int m=pat.length(),n=txt.length(),ans=0;
